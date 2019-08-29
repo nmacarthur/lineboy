@@ -21,7 +21,3 @@ Use headings [h1 - h6]
 or paragraphs
 
 `<p data-lineboy>This is the paragraph</p>`
-
-```
-
-```

@@ -18,9 +18,9 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
-    library: 'imageboy',
+    library: 'lineboy',
     libraryTarget: 'umd',
-    filename: 'imageboy.js',
+    filename: 'lineboy.js',
   },
   plugins: [
     new CleanWebpackPlugin(),

@@ -2,7 +2,7 @@
   "name": "@nmacarthur/lineboy",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/imageboy.js",
+  "main": "dist/lineboy.js",
   "files": [
     "/dist"
   ],

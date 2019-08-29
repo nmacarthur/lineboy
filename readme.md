@@ -1,25 +1,27 @@
-# ImageBoy
+# Lineboy
 
-Imageboy takes your images and wraps them in a container that resizes nicely.
+Lineboy is used for animations on text objects.
 
 ## Installation
 
-`npm install @nmacarthur/imageboy`
+`npm install @nmacarthur/lineboy`
+
+or grab it from here https://github.com/nmacarthur/lineboy/releases/latest/ and include it
 
 ## Usage
 
-After including the file, run `imageboy()` to replace your images.
+Add this line of css
 
-`<img data-replace src="..." alt="..." />`
+`[data-lineboy] { opacity: 0; }`
 
-The data-replace tag will place the image within the responsive container.
+Use headings [h1 - h6]
 
-The default ratio is 16 / 9.
+`<h1 data-lineboy>This is the text</h1>`
 
-`<img data-replace data-ratio="1/1" src="..." alt="..." />`
+or paragraphs
 
-Adding the ratio tag will set the ratio on the image container
+`<p data-lineboy>This is the paragraph</p>`
 
-`<img class="className" data-replace src="..." alt="..." />`
+```
 
-Classes that are added to the image will be placed on the parent component.
+```

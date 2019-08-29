@@ -1,6 +1,6 @@
 {
   "name": "@nmacarthur/lineboy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/lineboy.js",
   "files": [

@@ -1,15 +1,36 @@
 {
-  "name": "lineboy",
+  "name": "@nmacarthur/lineboy",
   "version": "0.0.1",
   "description": "",
-  "main": "index-min.js",
+  "main": "dist/imageboy.js",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "prod": "cross-env NODE_ENV=production webpack --config ./webpack.production.config.js",
+    "start": "cd dist && live-server --host=0.0.0.0"
   },
   "author": "Nicholas MacArthur",
-  "license": "ISC",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/preset-env": "^7.5.4",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^3.0.0",
+    "cross-env": "^5.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.27.1",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.1"
+  },
   "dependencies": {
-    "animejs": "^3.0.1",
-    "viewprt": "^3.1.0"
+    "animejs": "^3.1.0",
+    "pocket-styles": "^0.1.1"
   }
 }

@@ -1,5 +1,4 @@
 import anime from 'animejs';
-import { ElementObserver } from 'viewprt';
 
 const isHeader = tagName => {
   if (tagName === 'P') {
@@ -46,9 +45,10 @@ const titleManagement = (title, tl) => {
     title.appendChild(outerSpan);
   });
 
+  title.style.opacity = 1;
   tl.add({
     targets: title.querySelectorAll('.line'),
-    translateY: 0,
+    translateY: '0%',
     opacity: 1,
     delay: anime.stagger(200),
     duration: 600,
@@ -66,13 +66,14 @@ const otherManagement = (item, tl) => {
   item.style.display = 'block';
   item.innerHTML = '';
   item.appendChild(itemSpan);
-
+  item.style.opacity = 1;
   tl.add(
     {
       targets: itemSpan,
       translateY: 0,
       opacity: 1,
       duration: 600,
+      delay: 600,
       easing: 'easeInOutSine',
     },
     '-=100',
@@ -87,34 +88,42 @@ const playAnimation = tl => {
   tl.play();
 };
 
-const lineboy = () => {
-  const lineboys = Array.from(document.querySelectorAll('.lineboy'));
+const lineboy = (function() {
+  const lineboys = Array.from(document.querySelectorAll('[data-lineboy]'));
+
   lineboys.forEach(lineboy => {
     const clone = lineboy.cloneNode(true);
+
     const tl = anime.timeline({
       easing: 'easeInOutSine',
-      duration: 400,
       autoplay: false,
       complete(anim) {
         cleanup(lineboy, clone);
       },
     });
-    const contents = Array.from(lineboy.children);
-    contents.forEach(item => {
-      if (isHeader(item.tagName)) {
-        titleManagement(item, tl);
-      } else {
-        otherManagement(item, tl);
-      }
-    });
 
-    const elementObserver = ElementObserver(lineboy, {
-      onEnter(element, viewport) {
-        playAnimation(tl);
-      }, // callback when the element enters the viewport
-      offset: 0, // offset from the edges of the viewport in pixels
-      once: true, // if true, observer is detroyed after first callback is triggered
-    });
+    if (isHeader(lineboy.tagName)) {
+      titleManagement(lineboy, tl);
+    } else {
+      otherManagement(lineboy, tl);
+    }
+
+    let observer = new IntersectionObserver(
+      function(entries, self) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Stop watching and load the image
+            playAnimation(tl);
+            self.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: '500px',
+        threshold: 0,
+      },
+    );
+
+    observer.observe(lineboy);
   });
-};
-export { lineboy };
+})();

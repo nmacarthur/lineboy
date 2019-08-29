@@ -1,0 +1,14 @@
+.hidden {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.itemspan--hidden {
+  opacity: 0;
+  transform: translateY('2rem');
+  display: block;
+}
+
+.item {
+  display: block;
+}
